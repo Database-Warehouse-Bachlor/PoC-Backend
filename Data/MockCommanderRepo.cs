@@ -1,11 +1,14 @@
 
 
+using System;
 using System.Collections.Generic;
 using PoC_backend.Models;
 
 namespace PoC_Backend.Data {
     public class MockCommanderRepo : ICommanderRepo
     {
+        List<TennantData> dataList = new List<TennantData>();
+        
         public IEnumerable<Tennant> GetAppCommands()
         {
             var tennants = new List<Tennant> {
@@ -20,6 +23,22 @@ namespace PoC_Backend.Data {
         public User getLoginInfo(string username, string password)
         {
            return new User {username = "admin", password = "admin"};
+        }
+
+        public List<TennantData> getMoneyUpdate(int moneyUpdate)
+        {
+            for(int i = 0; i < 6; i++) {
+            Random random = new Random();
+
+            TennantData tennantData = new TennantData {moneyUpdate = random.Next(1000, 10000)};
+
+            Console.WriteLine("BEFORE: {0}", tennantData);
+            dataList.Add(tennantData);
+            Console.WriteLine("UPDATED: {0}", tennantData);
+        
+        }
+            
+            return dataList;
         }
 
         public Tennant getTennantById(int id)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using PoC_backend.Models;
@@ -9,12 +10,12 @@ namespace PoC_Backend.Controllers {
     [ApiController]
     public class CommandsController : ControllerBase {
         private readonly ICommanderRepo _repository;
+        //List<TennantData> dataList = new List<TennantData>();
 
         public CommandsController(ICommanderRepo repository) {
             _repository = repository;
         }
         
-
         //GET api/commands
         [HttpGet]
         public ActionResult <IEnumerable<Tennant>> GetAllCommands() {
@@ -22,7 +23,6 @@ namespace PoC_Backend.Controllers {
             var commandItems = _repository.GetAppCommands();
 
             return Ok(commandItems);
-
         }
 
         // GET api/commands/{id}
@@ -41,6 +41,13 @@ namespace PoC_Backend.Controllers {
             return Ok("1");
         }
 
+        [Route("data")]
+        [HttpGet]
+        public ActionResult <List<TennantData>> getTennantData(int moneyUpdate) {
+            List<TennantData> moneyInfo = _repository.getMoneyUpdate(moneyUpdate);
+          
+            return Ok(moneyInfo);
+        }
     }
 
 
