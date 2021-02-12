@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using PoC_backend.Models;
 using PoC_Backend.Data;
-using PoC_Backend.Models;
 
 namespace PoC_Backend.Controllers {
 
-    [Route("api/commands")]
+    [Route("api/commands/")]
     [ApiController]
     public class CommandsController : ControllerBase {
         private readonly ICommanderRepo _repository;
@@ -17,7 +17,7 @@ namespace PoC_Backend.Controllers {
 
         //GET api/commands
         [HttpGet]
-        public ActionResult <IEnumerable<Command>> GetAllCommands() {
+        public ActionResult <IEnumerable<Tennant>> GetAllCommands() {
 
             var commandItems = _repository.GetAppCommands();
 
@@ -27,13 +27,21 @@ namespace PoC_Backend.Controllers {
 
         // GET api/commands/{id}
         [HttpGet("{id}")]
-        public ActionResult <Command> GetCommandById(int id) {
+        public ActionResult <Tennant> GetCommandById(int id) {
 
-            var commandItem = _repository.GetCommandById(id);
+            var commandItem = _repository.getTennantById(id);
             return Ok(commandItem);
 
+        } 
+
+        [Route("login")]
+        [HttpGet]
+        public ActionResult <User> getLoginInfo(string username, string password) {
+            var loginInfo = _repository.getLoginInfo(username, password);
+            return Ok("1");
         }
 
-        
     }
+
+
 }

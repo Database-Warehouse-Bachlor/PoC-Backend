@@ -1,13 +1,14 @@
 
 
 using System.Collections.Generic;
-using PoC_Backend.Models;
+using PoC_backend.Models;
 
 namespace PoC_Backend.Data {
     public interface ICommanderRepo {
-        IEnumerable<Command> GetAppCommands();
+        IEnumerable<Tennant> GetAppCommands();
 
-        Command GetCommandById(int id);
-        
+        Tennant getTennantById (int id);
+
+        User getLoginInfo(string username, string password);
     }
 }
