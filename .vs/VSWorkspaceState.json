@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\bin",
+    "\\Controllers",
+    "\\Data",
+    "\\Models",
+    "\\Properties"
   ],
+  "SelectedNode": "\\Data\\MockCommanderRepo.cs",
   "PreviewInSolutionExplorer": false
 }
