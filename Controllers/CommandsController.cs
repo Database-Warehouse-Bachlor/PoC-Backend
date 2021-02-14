@@ -38,7 +38,10 @@ namespace PoC_Backend.Controllers {
         [HttpGet]
         public ActionResult <User> getLoginInfo(string username, string password) {
             var loginInfo = _repository.getLoginInfo(username, password);
-            return Ok("1");
+            if(username == "admin" && password == "admin") {
+                return Ok("1");
+            }
+            return Ok("0");
         }
 
         [Route("data")]
